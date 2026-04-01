@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = "https://team-dynamite-debug-prioritizer.onrender.com/api";
 
 export async function runDemo() {
   const res = await fetch(`${API_BASE}/run-demo`, { method: "POST" });
