@@ -1,7 +1,30 @@
-numpy==1.24.3
-pandas==1.5.3
-scikit-learn==1.3.0
-scipy==1.10.1
+# ──────────────────────────────────────────────────────────
+# Team Dynamite — AI-Enabled Debug Prioritization
+# Requirements (CPU-friendly, pinned versions)
+# ──────────────────────────────────────────────────────────
 
-networkx==3.1
-regex
+# Core ML / Embeddings
+
+sentence-transformers==2.6.1
+
+# Dimensionality Reduction & Clustering
+umap-learn==0.5.6
+hdbscan==0.8.38.post1
+
+# Graph / Causality DAG
+networkx==3.2.1
+
+# Scientific Computing
+scipy==1.12.0
+numpy==1.26.4
+scikit-learn==1.4.2
+
+# Log Parsing
+regex==2024.4.28
+
+# Dashboard / Front-end
+streamlit==1.33.0
+
+# Utilities
+pandas==2.2.2
+plotly==5.22.0
