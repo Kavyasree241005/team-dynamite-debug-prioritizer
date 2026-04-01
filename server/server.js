@@ -29,7 +29,9 @@ if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 const upload = multer({ dest: uploadDir });
 
 // Python executable — try common names
-const PYTHON = process.platform === "win32" ? "python" : "python3";
+const PYTHON = process.platform === "win32"
+  ? "python"
+  : path.join(__dirname, ".venv/bin/python");
 const BRIDGE_SCRIPT = path.join(__dirname, "python_bridge.py");
 
 /**
