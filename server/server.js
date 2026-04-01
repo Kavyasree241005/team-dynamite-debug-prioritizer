@@ -13,10 +13,13 @@ const fs = require("fs");
 const { spawn } = require("child_process");
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+}));
 app.use(express.json({ limit: "50mb" }));
 
 // Upload directory
@@ -107,15 +110,21 @@ app.post("/api/run-demo", async (req, res) => {
   console.log("[API] Running demo pipeline...");
   try {
     const result = await runPython(["run-demo"], 300000);
+
+    console.log("RESULT:", result); // 👈 ADD THIS
+
     if (result.error) {
       console.error("[API] Pipeline error:", result.error);
       return res.status(500).json(result);
     }
-    console.log("[API] Demo pipeline complete");
+
     res.json(result);
   } catch (err) {
-    console.error("[API] Demo pipeline failed:", err.message);
-    res.status(500).json({ error: err.message });
+    console.error("[API ERROR]:", err); // 👈 IMPORTANT
+
+    res.status(500).json({
+      error: err.message || "Pipeline failed",
+    });
   }
 });
 
