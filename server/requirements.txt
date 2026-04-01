@@ -4,7 +4,7 @@
 # ──────────────────────────────────────────────────────────
 
 # Core ML / Embeddings
-torch==2.0.1
+
 sentence-transformers==2.6.1
 
 # Dimensionality Reduction & Clustering
