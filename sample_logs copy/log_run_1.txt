@@ -1,0 +1,231 @@
+// ============================================================================
+// UVM Simulation Log — DDR5 Memory Controller Verification
+// Testbench: tb_ddr5_mem_ctrl | Seed: 0xDEAD_BEEF | Run ID: 20241115_081200
+// Simulator: Synopsys VCS 2024.03 | UVM 1.2
+// ============================================================================
+#     0ns UVM_INFO  @ 0: reporter [RNTST] Running test ddr5_mem_ctrl_stress_test...
+#     0ns UVM_INFO  @ 0: reporter [UVMTOP] UVM testbench topology build phase started
+#     5ns UVM_INFO  tb_ddr5_mem_ctrl.env [BUILD] Environment build phase — instantiating agents
+#    10ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr [BUILD] Write agent created: outstanding_txn=16
+#    10ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd [BUILD] Read agent created: outstanding_txn=16
+#    12ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [BUILD] Scoreboard created: ref_model=ddr5_timing_model
+#    15ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [BUILD] Functional coverage collector instantiated
+#    18ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONNECT] Agent-scoreboard TLM connections established
+#    20ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONNECT] Coverage subscriber ports connected
+#    22ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONFIG] DDR5-4800 mode selected: tCL=36, tRCD=36, tRP=36
+#    25ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONFIG] 2 ranks, 4 bank groups, 4 banks per group
+#    28ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONFIG] Burst length=16, prefetch=16n
+#    30ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONFIG] ECC mode: on-die ECC + controller SEC-DED
+#    32ns UVM_INFO  tb_ddr5_mem_ctrl.env [CONFIG] Refresh mode: per-bank refresh, tREFI=3.9us
+#    35ns UVM_INFO  reporter [UVMTOP] Starting run phase
+#    40ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.sequencer [SEQ] Starting sequence: ddr5_write_burst_seq (500 transactions)
+#    42ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.sequencer [SEQ] Starting sequence: ddr5_read_verify_seq (500 transactions)
+#    50ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #0: ADDR=0x0000_0000 LEN=64B BG=0 BA=0 ROW=0x000 COL=0x000
+#    55ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #1: ADDR=0x0000_0040 LEN=64B BG=0 BA=0 ROW=0x000 COL=0x040
+#    60ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #2: ADDR=0x0000_0080 LEN=64B BG=0 BA=1 ROW=0x000 COL=0x000
+#    65ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #0 latency=14 cycles — PASS
+#    70ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #1 latency=8 cycles — PASS (same row)
+#    75ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #2 latency=14 cycles — PASS (bank switch)
+#    80ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #3: ADDR=0x0001_0000 LEN=64B BG=1 BA=0 ROW=0x001 COL=0x000
+#    85ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #4: ADDR=0x0001_0040 LEN=64B BG=1 BA=0 ROW=0x001 COL=0x040
+#    90ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #0: ADDR=0x0000_0000 LEN=64B expected_data=0xCAFE...
+#    95ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #0 data compare — PASS
+#   100ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #1: ADDR=0x0000_0040 LEN=64B expected_data=0xBEEF...
+#   105ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #1 data compare — PASS
+#   110ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #5: ADDR=0x0002_0000 LEN=64B BG=2 BA=0 ROW=0x002 COL=0x000
+#   115ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Bank group coverage: 3/4 bins hit
+#   120ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #6: ADDR=0x0003_0000 LEN=64B BG=3 BA=0 ROW=0x003 COL=0x000
+#   125ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Bank group coverage: 4/4 bins hit — 100%
+#   130ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #6 latency=20 cycles — exceeds tCWL+BL/2 budget by 2 clks
+#   135ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #7: ADDR=0x0003_0040 LEN=64B BG=3 BA=0 ROW=0x003 COL=0x040
+#   140ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #7 latency=22 cycles — tRRD_S violation suspected
+#   145ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Command: ACT BG=3 BA=1 ROW=0x003
+#   150ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Command: WR BG=3 BA=1 COL=0x000 AP=0
+#   155ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #2: ADDR=0x0001_0000 LEN=64B
+#   160ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #2 data compare — PASS
+#   165ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #8-#15: burst of 8 to ADDR=0x0004_0000..0x0004_01C0
+#   170ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #8..#15 latency within budget — PASS
+#   175ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Row hit rate coverage: 45% — cross with BG
+#   180ns UVM_WARNING tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON_TIMING] tFAW window violation: 5th ACT within 20ns window on rank 0
+#   185ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] DUT stalled ACT — tFAW throttling active
+#   190ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ctrl.assert_tRRD_S: tRRD_S timing check FAILED at time 190ns — required>=5ns, observed=4.2ns between ACT BG=2 and ACT BG=3
+#   192ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_PROTOCOL] tRRD_S violation confirmed by reference model: BG2->BG3 interval=4.2ns < 5ns minimum
+#   195ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ctrl.assert_tRRD_S: tRRD_S timing check FAILED at time 195ns — required>=5ns, observed=4.1ns between ACT BG=0 and ACT BG=1
+#   198ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_PROTOCOL] tRRD_S violation confirmed: BG0->BG1 interval=4.1ns
+#   200ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #16: ADDR=0x0010_0000 LEN=64B — crossing 1MB boundary
+#   205ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #16 — PASS
+#   210ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #3-#10: burst of 8 reads to ADDR=0x0004_0000..0x0004_01C0
+#   215ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #3..#10 data compare — all PASS
+#   220ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Read-after-write hazard path coverage: 12/20 bins
+#   225ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #17: ADDR=0x0010_0040 LEN=64B
+#   230ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #18: ADDR=0x0010_0080 LEN=64B
+#   235ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Rank 0 refresh issued: REFab command
+#   240ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Refresh blocked 3 pending ACTs for 180ns
+#   245ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #18 latency=38 cycles — refresh penalty detected
+#   250ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #19: ADDR=0x0020_0000 LEN=64B — rank 1 first access
+#   255ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #19 — PASS (rank 1)
+#   260ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Rank interleave coverage: 2/2 ranks exercised
+#   265ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #11: ADDR=0x0020_0000 LEN=64B (rank 1 readback)
+#   270ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #11 data compare — PASS
+#   275ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #20-#35: bulk fill 0x0030_0000..0x0030_03C0
+#   280ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #20..#35 — all PASS
+#   285ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Burst length coverage: BL16 100%
+#   290ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #36: ADDR=0x7F00_0000 LEN=64B — top-of-range
+#   295ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #36 — PASS
+#   300ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #37: ADDR=0x7F00_0040 LEN=64B
+#   305ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #38: ADDR=0x7F00_0080 LEN=64B
+#   310ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ecc.assert_ecc_syndrome_valid: ECC syndrome check FAILED — computed syndrome=0xA4 does not match expected=0x00 for write at ADDR=0x7F00_2100
+#   315ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] ECC single-bit error detected at ADDR=0x7F00_2100, syndrome=0xA4 — correctable
+#   318ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ecc.assert_ecc_syndrome_valid: ECC syndrome check FAILED — syndrome=0xA4 at ADDR=0x7F00_2180
+#   320ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] ECC single-bit error #2 at ADDR=0x7F00_2180, syndrome=0xA4 — same signature as #1
+#   325ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ecc.assert_ecc_syndrome_valid: ECC syndrome check FAILED — syndrome=0xA4 at ADDR=0x7F00_2200
+#   328ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] ECC single-bit error #3 at ADDR=0x7F00_2200, syndrome=0xA4 — pattern repeating on DQ bit 23
+#   330ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] Excessive correctable ECC errors: 3 errors in 20ns window exceeds threshold of 2
+#   332ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] ECC error injection coverage: single-bit correctable path hit
+#   335ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #39: ADDR=0x7F00_3000 LEN=64B — targeting known weak cell region
+#   340ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ecc.assert_ecc_uncorrectable: ECC multi-bit UNCORRECTABLE error at ADDR=0x7F00_3000 — syndrome=0xFF, 3+ bit errors detected
+#   342ns UVM_FATAL tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] UNCORRECTABLE multi-bit ECC error at ADDR=0x7F00_3000 — data integrity LOST, syndrome=0xFF
+#   345ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] Data CRC mismatch: expected=0xBADE_CAFE, computed=0x1234_5678 at ADDR=0x7F00_3000
+#   348ns UVM_ERROR tb_ddr5_mem_ctrl.env.agent_rd.monitor [MON] DUT memory scrubber halted — uncorrectable error at page 0x7F003
+#   350ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_PATROL] Patrol scrub suspended, page 0x7F003 marked as poisoned
+#   352ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] ECC uncorrectable path hit — rare corner
+#   355ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #40-#55: continuing normal writes to 0x0040_0000..0x0040_03C0
+#   360ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #40..#55 — all PASS
+#   365ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #12-#27: readback of 0x0030_0000..0x0030_03C0
+#   370ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #12..#27 data compare — all PASS
+#   375ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Address range coverage: 0x0000..0x7F00 — 65% of bins hit
+#   380ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ctrl.assert_tREFI: Refresh interval violation FAILED — tREFI exceeded: elapsed=8.1us, max=7.8us on rank 0
+#   382ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_REFRESH] tREFI violation: rank 0 refresh missed, elapsed=8.1us > 7.8us limit
+#   385ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_REFRESH] Data retention risk: rank 0 bank group 2 may have charge leakage
+#   388ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Temperature sensor readback: DIMM0=87C (throttle threshold=85C)
+#   390ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_THERMAL] DIMM0 temperature 87C exceeds 85C threshold — thermal throttle should engage
+#   392ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_THERMAL] Thermal throttle engaged by DUT: bandwidth reduced to 60%
+#   395ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #56: ADDR=0x0050_0000 LEN=64B — throttled mode
+#   400ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #56 latency=45 cycles — thermal throttle penalty
+#   405ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #57-#60: ADDR=0x0050_0040..0x0050_00C0
+#   410ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #57..#60 — PASS (throttled latency acceptable)
+#   415ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #28-#35: readback under thermal throttle
+#   420ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #28..#35 — all PASS
+#   425ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Thermal throttle scenario coverage: hit
+#   430ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] DUT entering power-down mode for idle ranks
+#   432ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_pwr.assert_CKE_deassert: CKE deassert timing check FAILED — CKE not low within tCKEmin=5ns, observed=6.2ns
+#   435ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_POWER] Self-refresh entry failed: CKE timing violation, deassert took 6.2ns vs 5ns max
+#   438ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] DUT aborted self-refresh entry, staying in active mode
+#   440ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Power management coverage: self-refresh abort path hit
+#   445ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #61-#80: stress burst to all bank groups
+#   450ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #61..#80 — all PASS
+#   455ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #81-#100: back-to-back writes testing pipeline depth
+#   460ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #81..#100 — all PASS
+#   462ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Pipeline depth coverage: 16/16 outstanding transactions achieved
+#   465ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #36-#50: mixed rank interleave reads
+#   470ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #36..#50 — all PASS
+#   475ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #101: ADDR=0x0060_0000 LEN=64B
+#   480ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #102: ADDR=0x0060_0040 LEN=64B
+#   482ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ctrl.assert_tWR: tWR timing check FAILED — write recovery time insufficient: required>=15ns, measured=12ns at BG=0 BA=0
+#   485ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_PROTOCOL] tWR violation: write recovery too short at BG=0 BA=0, 12ns < 15ns
+#   488ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_PROTOCOL] Potential read-after-write data corruption risk at BG=0 BA=0
+#   490ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #51: ADDR=0x0060_0000 — RAW hazard test
+#   492ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #51 DATA MISMATCH: expected=0xAAAA_BBBB, actual=0xAAAA_0000 at byte offset 4 — RAW hazard corruption confirmed
+#   495ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #52: ADDR=0x0060_0040 — second RAW test
+#   498ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #52 data compare — PASS (no corruption at this address)
+#   500ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #103-#120: sequential fill 0x0070_0000..0x0070_0440
+#   505ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #103..#120 — all PASS
+#   510ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #53-#70: readback of sequential fill
+#   515ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #53..#70 — all PASS
+#   520ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Sequential access pattern coverage: hit
+#   525ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #121-#140: random address stress
+#   530ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #121..#140 — all PASS
+#   535ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #141: ADDR=0x7F00_4000 LEN=64B
+#   538ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #141 latency=32 cycles — row miss penalty + refresh collision
+#   540ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Per-bank refresh issued: REFpb BG=0 BA=2
+#   545ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Per-bank refresh completed
+#   550ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #142-#160: post-refresh writes
+#   555ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #142..#160 — all PASS
+#   560ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #71-#90: random readback
+#   565ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #71..#90 — all PASS
+#   570ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Random address coverage: 78% of addr bins hit
+#   575ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #161-#180: same-row repeated writes (anti-row-hammer test)
+#   578ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_SECURITY] Row hammer threshold approaching: 150 ACTs to row 0x003 within tREFW
+#   580ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] TRR (target row refresh) mitigation activated by DUT
+#   585ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #161..#180 — all PASS
+#   590ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Row hammer mitigation coverage: TRR path hit
+#   595ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #181-#200: final batch before command queue stress
+#   600ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #181..#200 — all PASS
+#   605ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #201-#240: flooding command queue — 40 txns in 10ns
+#   608ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Command queue utilization at 95% — near overflow
+#   610ns UVM_ERROR tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] DUT asserted cmd_queue_full: backpressure on write port
+#   612ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Stalling writes: waiting for cmd queue drain
+#   615ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Command queue drained — resuming
+#   618ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #201..#240 — all PASS (delayed)
+#   620ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Command queue full coverage: hit
+#   625ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #241-#260: mixed priority writes (urgent + normal)
+#   630ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #241..#260 — all PASS
+#   635ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] QoS priority coverage: urgent=hit, normal=hit
+#   640ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #261-#280: address boundary stress — 0xFFFF_FFC0
+#   645ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #261..#280 — all PASS
+#   650ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #91-#110: full address range readback
+#   655ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #91..#110 — all PASS
+#   660ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Address boundary coverage: top-of-range hit
+#   665ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #281-#300: ZQ calibration during traffic
+#   668ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] ZQ calibration command issued by DUT
+#   670ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #285 latency=50 cycles — ZQ calibration stall
+#   675ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #281..#300 — all PASS
+#   680ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] ZQ calibration during traffic coverage: hit
+#   685ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #301-#320: write with auto-precharge
+#   690ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #301..#320 — all PASS (auto-precharge)
+#   695ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #321-#340: write with explicit precharge
+#   700ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #321..#340 — all PASS
+#   705ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Precharge mode coverage: auto=hit, explicit=hit
+#   710ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #111-#130: read with auto-precharge
+#   715ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #111..#130 — all PASS
+#   720ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #341-#360: back-to-back write-read-write pattern
+#   725ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #341..#360 — all PASS
+#   730ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #131-#150: interleaved with writes
+#   735ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #131..#150 — all PASS
+#   740ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Write-read turnaround coverage: tWTR_S=hit, tWTR_L=hit
+#   745ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #361-#380: sub-cacheline partial writes (WSTRB masking)
+#   750ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #361..#380 — all PASS (partial write merge verified)
+#   755ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Partial write (WSTRB mask) coverage: 8/16 byte-lane combos
+#   760ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #381-#400: maximum bandwidth stress, all ports active
+#   765ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #381..#400 — all PASS
+#   770ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn #151-#170: concurrent with writes
+#   775ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #151..#170 — all PASS
+#   778ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Max bandwidth coverage: achieved 90% bus utilization
+#   780ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #401-#420: error injection — flip bit 23 in write data
+#   785ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_ecc.assert_ecc_correction: ECC correction assertion FAILED — corrected data does not match golden at ADDR=0x0080_0100
+#   788ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] ECC correction logic error: bit 23 flipped but correction pointed to bit 22
+#   790ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] ECC mis-correction coverage: rare corner case hit
+#   795ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #421-#440: normal writes post-ECC-error
+#   800ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #421..#440 — all PASS
+#   805ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #441-#460: crossing 4KB page boundary
+#   808ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_TIMING] Write #450 latency=28 cycles — page boundary miss penalty
+#   810ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #441..#460 — all PASS
+#   815ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Page boundary crossing coverage: hit
+#   820ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn #461-#480: ODT (on-die termination) switching stress
+#   822ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] ODT switching pattern: WR_ODT rank0=ON rank1=OFF
+#   825ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #461..#480 — all PASS
+#   830ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.driver [DRV] Write txn final batch #481-#500
+#   832ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_rd.driver [DRV] Read txn final batch #171-#200
+#   835ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Write #481..#500 — all PASS
+#   838ns UVM_INFO  tb_ddr5_mem_ctrl.env.scoreboard [SB_MATCH] Read #171..#200 — all PASS
+#   840ns UVM_FATAL tb_ddr5_mem_ctrl.env.scoreboard [SB_CTRL] Controller lockup detected: command queue full for 1000 consecutive cycles with no drain — DUT deadlocked
+#   842ns UVM_FATAL tb_ddr5_mem_ctrl.env.scoreboard [SB_CTRL] Watchdog timeout on memory interface — no response in 2000 cycles
+#   845ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] DUT initiating hard reset sequence
+#   848ns UVM_INFO  tb_ddr5_mem_ctrl.env.agent_wr.monitor [MON] Crash dump saved to ADDR=0xFF00_0000
+#   850ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_bist.assert_bist_pass: Post-reset BIST FAILED — data pattern mismatch at ADDR=0x0001_0000, expected=0x5555_AAAA, actual=0x5555_AA2A
+#   852ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_BIST] Post-reset BIST data mismatch at ADDR=0x0001_0000 — probable stuck-at-1 on DQ bit 23
+#   855ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_BIST] Stuck-at-1 fault confirmed on DQ bit 23 across 4 test patterns
+#   858ns SVA_FAIL  tb_ddr5_mem_ctrl.dut_wrap.u_bist.assert_bist_pass: Post-reset BIST FAILED — address decoder error at ADDR=0x0002_0000, row aliasing detected
+#   860ns UVM_ERROR tb_ddr5_mem_ctrl.env.scoreboard [SB_BIST] Address decoder fault: rows 0x001 and 0x002 alias to same physical row
+#   862ns UVM_FATAL tb_ddr5_mem_ctrl.env.scoreboard [SB_CRITICAL] Memory subsystem declared non-functional — escalating to system management controller
+#   865ns UVM_WARNING tb_ddr5_mem_ctrl.env.scoreboard [SB_SPARE] Spare rank activation requested but no spare ranks configured in current topology
+#   868ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Final functional coverage: 87.3% (target: 95%)
+#   870ns UVM_INFO  tb_ddr5_mem_ctrl.env.coverage [COV] Coverage holes: ODT timing cross (12 bins), partial write merge (8 bins), sub-rank targeting (15 bins)
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] === Severity Summary ===
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] UVM_FATAL  : 3
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] UVM_ERROR  : 14
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] SVA_FAIL   : 9
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] UVM_WARNING: 13
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] UVM_INFO   : 155
+#   875ns UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] === End ddr5_mem_ctrl_stress_test ===
+#   880ns UVM_INFO  reporter [FINISH] Simulation complete at 880ns — FAILED (3 FATAL, 14 ERROR)

@@ -1,0 +1,178 @@
+// ============================================================================
+// UVM Simulation Log — GICv3 Interrupt Controller & DMA Verification
+// Testbench: tb_gic_dma | Seed: 0xFACE_DEED | Run ID: 20241115_104500
+// Simulator: Synopsys VCS 2024.03 | UVM 1.2
+// ============================================================================
+#     0ns UVM_INFO  @ 0: reporter [RNTST] Running test gic_dma_stress_test...
+#     0ns UVM_INFO  @ 0: reporter [UVMTOP] UVM testbench topology build phase started
+#     5ns UVM_INFO  tb_gic_dma.env [BUILD] GIC + DMA verification environment instantiated
+#     8ns UVM_INFO  tb_gic_dma.env.gic_agent [BUILD] GICv3 agent created: 256 SPIs, 4 CPUs, LPI support
+#    10ns UVM_INFO  tb_gic_dma.env.dma_agent [BUILD] DMA agent created: 8 channels, scatter-gather, linked-list
+#    12ns UVM_INFO  tb_gic_dma.env.cpu_agent_0 [BUILD] CPU interface agent 0: priority_mask=0xFF, BPR=3
+#    15ns UVM_INFO  tb_gic_dma.env.cpu_agent_1 [BUILD] CPU interface agent 1: priority_mask=0xFF, BPR=3
+#    18ns UVM_INFO  tb_gic_dma.env.cpu_agent_2 [BUILD] CPU interface agent 2: priority_mask=0xFF, BPR=3
+#    20ns UVM_INFO  tb_gic_dma.env.cpu_agent_3 [BUILD] CPU interface agent 3: priority_mask=0xFF, BPR=3
+#    22ns UVM_INFO  tb_gic_dma.env.scoreboard [BUILD] Interrupt delivery scoreboard created
+#    25ns UVM_INFO  tb_gic_dma.env.coverage [BUILD] GIC functional coverage collector instantiated
+#    28ns UVM_INFO  tb_gic_dma.env [CONNECT] GIC-CPU TLM connections established
+#    30ns UVM_INFO  tb_gic_dma.env [CONNECT] DMA-interrupt completion paths connected
+#    32ns UVM_INFO  tb_gic_dma.env [CONFIG] GIC distributor: enabled, affinity routing ON
+#    35ns UVM_INFO  tb_gic_dma.env [CONFIG] SPI 0-63: Group1-NS, edge-triggered
+#    38ns UVM_INFO  tb_gic_dma.env [CONFIG] SPI 64-127: Group1-NS, level-sensitive
+#    40ns UVM_INFO  tb_gic_dma.env [CONFIG] SPI 128-255: Group1-S, mixed trigger
+#    42ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_CONFIG] SPI 47 configured as level-sensitive but hardware source drives edge — glitch risk
+#    45ns UVM_INFO  tb_gic_dma.env [CONFIG] DMA channels 0-3: memory-to-memory, burst_len=16
+#    48ns UVM_INFO  tb_gic_dma.env [CONFIG] DMA channels 4-7: memory-to-peripheral, burst_len=4
+#    50ns UVM_INFO  reporter [UVMTOP] Starting run phase
+#    52ns UVM_INFO  tb_gic_dma.env.gic_agent.sequencer [SEQ] Starting: gic_interrupt_storm_seq
+#    55ns UVM_INFO  tb_gic_dma.env.dma_agent.sequencer [SEQ] Starting: dma_multi_channel_seq
+#    58ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting SPI 0 (edge) — UART RX complete
+#    60ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.monitor [MON] CPU0 IAR read: IRQ_ID=0, priority=0xA0
+#    62ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 0 delivered to CPU0 — PASS, latency=4ns
+#    65ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.driver [DRV] CPU0 EOI for IRQ 0
+#    68ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting SPI 1 (edge) — timer expiry
+#    70ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.monitor [MON] CPU0 IAR read: IRQ_ID=1, priority=0x80
+#    72ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 1 delivered to CPU0 — PASS
+#    75ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.driver [DRV] CPU0 EOI for IRQ 1
+#    78ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch0: SRC=0x8000_0000 DST=0x2000_0000 LEN=4096 — START
+#    80ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: transfer in progress, 25% complete
+#    82ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: transfer in progress, 50% complete
+#    85ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: transfer in progress, 75% complete
+#    88ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: transfer complete, 4096 bytes moved
+#    90ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] DMA ch0 asserting completion SPI 32
+#    92ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.monitor [MON] CPU0 IAR read: IRQ_ID=32, priority=0xA0
+#    95ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch0 completion interrupt delivered — PASS
+#    98ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting SPI 2-5 simultaneously (4 GPIO interrupts)
+#   100ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 2 delivered CPU0, SPI 3 delivered CPU1 — PASS (affinity routing)
+#   102ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 4 delivered CPU0, SPI 5 delivered CPU1 — PASS
+#   105ns UVM_INFO  tb_gic_dma.env.coverage [COV] Multi-interrupt concurrent delivery: hit
+#   108ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch1: SRC=0x8000_1000 DST=0x2000_1000 LEN=8192 — START
+#   110ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch2: SRC=0x8000_3000 DST=0x4000_0000 LEN=256 — peripheral — START
+#   112ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch3: SRC=0x8000_5000 DST=0x2000_5000 LEN=16384 — START
+#   115ns UVM_INFO  tb_gic_dma.env.coverage [COV] Multi-channel concurrent DMA: 3/8 channels active
+#   118ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting SPI 10 (level) — watchdog warning
+#   120ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.monitor [MON] CPU0 IAR read: IRQ_ID=10
+#   122ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 10 delivered — PASS
+#   125ns UVM_ERROR tb_gic_dma.env.cpu_agent_0.monitor [MON] Spurious interrupt detected on CPU0: IAR returned 1023 (no pending)
+#   128ns UVM_ERROR tb_gic_dma.env.cpu_agent_0.monitor [MON] Spurious interrupt detected on CPU0: IAR returned 1023 — second occurrence
+#   130ns UVM_ERROR tb_gic_dma.env.cpu_agent_1.monitor [MON] Spurious interrupt detected on CPU1: IAR returned 1023
+#   132ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_SPURIOUS] 3 spurious interrupts in 10ns window — possible distributor timing issue
+#   135ns UVM_INFO  tb_gic_dma.env.coverage [COV] Spurious interrupt coverage: hit
+#   138ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch1: complete, 8192 bytes
+#   140ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] DMA ch1 completion SPI 33
+#   142ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch1 completion interrupt — PASS
+#   145ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_AFFINITY] IRQ affinity violation: SPI 72 routed to CPU1 but Group1-NS only targets CPU0
+#   148ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_AFFINITY] SPI 72 delivered to wrong CPU: expected CPU0, got CPU1 — affinity configuration error
+#   150ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch2: complete, 256 bytes to peripheral
+#   152ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] DMA ch2 completion SPI 34
+#   155ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch2 completion interrupt — PASS
+#   158ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting SPI 32 (priority=0xA0) then SPI 100 (priority=0xC0) — priority test
+#   160ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_PRIORITY] Priority inversion: IRQ 32 (prio=0xA0, higher) preempted by IRQ 100 (prio=0xC0, lower) — GIC preemption logic error
+#   162ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_priority_order: Priority ordering FAILED — IRQ 100 (lower priority 0xC0) serviced before IRQ 32 (higher priority 0xA0)
+#   165ns UVM_INFO  tb_gic_dma.env.coverage [COV] Priority inversion coverage: hit
+#   168ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_EOI] EOI race condition: software EOI for IRQ 32 arrived before interrupt acknowledged — state machine error
+#   170ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_eoi_after_ack: EOI sequence FAILED — EOI write before IAR read for IRQ 32
+#   172ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch3: complete, 16384 bytes
+#   175ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] DMA ch3 completion SPI 35
+#   178ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch3 completion interrupt — PASS
+#   180ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Starting interrupt storm: SPI 47, asserting at 50000/sec
+#   182ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_STORM] SPI 47 rate=50000/sec exceeds threshold=10000/sec
+#   185ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_irq_rate_limit: Interrupt storm check FAILED — SPI 47 firing 50000 times/sec, limit=10000/sec
+#   188ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_STORM] Interrupt storm detected on SPI 47: 50000 assertions/sec — CPU0 spending 100% time in ISR
+#   190ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_STORM] Masking SPI 47 due to storm — potential data loss on UART0
+#   192ns UVM_INFO  tb_gic_dma.env.coverage [COV] Interrupt storm coverage: hit
+#   195ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_SGI] SGI broadcast storm: CPU0 sent 256 SGI-15 in 100us
+#   198ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_SGI] SGI delivery failure: CPU3 offline but targeted by SGI from CPU0
+#   200ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch4: SRC=0x4000_1000 DST=0x8000_A000 LEN=512 — peripheral read
+#   202ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch5: SRC=0x8000_B000 DST=0x4000_2000 LEN=512 — peripheral write
+#   205ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch4: complete
+#   208ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch5: complete
+#   210ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch4,ch5 completion — PASS
+#   212ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch0: linked-list descriptor chain, 4 descriptors
+#   215ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0 descriptor 1/4 complete
+#   218ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0 descriptor 2/4 complete
+#   220ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0 descriptor 3/4 complete
+#   222ns SVA_FAIL  tb_gic_dma.dut_wrap.u_dma.assert_desc_chain_valid: DMA descriptor chain FAILED — descriptor 4 next_ptr=0xDEAD_DEAD invalid address
+#   225ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_DMA_ERR] DMA ch0 descriptor chain error: descriptor 4 points to invalid address 0xDEAD_DEAD
+#   228ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_DMA_ERR] DMA ch0 halted mid-chain — 3/4 descriptors completed, 1 lost
+#   230ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_DMA_ERR] DMA ch0 error interrupt SPI 36 asserted
+#   232ns UVM_INFO  tb_gic_dma.env.cpu_agent_0.monitor [MON] CPU0 IAR read: IRQ_ID=36 (DMA error)
+#   235ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA error interrupt delivered — PASS
+#   238ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Asserting LPI: DeviceID=0x0100, EventID=0x40
+#   240ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_LPI] LPI table walk error: ITS command MAPD failed for DeviceID=0x0100
+#   242ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_its_translation: ITS translation FAILED — EventID=0x40 not mapped for DeviceID=0x0100
+#   245ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_LPI] ITS translation fault: EventID=0x40 unmapped — interrupt lost
+#   248ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_LPI] Pending table memory corruption at 0x8010_0000, byte 0x40 != expected
+#   250ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch6: scatter-gather, 8 segments, total 32KB
+#   252ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: segment 1/8 complete
+#   255ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: segment 2/8 complete
+#   258ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: segment 3/8 complete
+#   260ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: segment 4/8 complete
+#   262ns SVA_FAIL  tb_gic_dma.dut_wrap.u_dma.assert_sg_boundary: DMA scatter-gather boundary check FAILED — segment 5 crosses 4KB page at 0x8002_0000
+#   265ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_DMA_ERR] DMA ch6 scatter-gather: segment 5 crosses 4KB boundary — AXI spec violation
+#   268ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_DMA_ERR] DMA ch6 continuing despite boundary violation — data integrity at risk
+#   270ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: segments 5-8 complete (with boundary violation)
+#   272ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch6 scatter-gather complete — 32KB moved, 1 boundary violation
+#   275ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_REDIST] GIC redistributor sync lost: CPU2 redistributor not responding to wake request
+#   278ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_REDIST] Power state mismatch: CPU2 GIC reports ON, power controller reports OFF
+#   280ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_redist_sync: Redistributor sync FAILED — CPU2 redistributor desynchronised from power domain
+#   282ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch7: SRC=0x2000_0000 DST=0x8000_C000 LEN=65536 — large transfer
+#   285ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch7: 25% complete
+#   288ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch7: 50% complete
+#   290ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch7: 75% complete
+#   292ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch7: complete, 65536 bytes
+#   295ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] DMA ch7 completion SPI 39
+#   298ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch7 completion interrupt — PASS
+#   300ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_COALESCE] Interrupt coalescing misconfiguration: timer=0 causes immediate re-trigger on SPI 33
+#   302ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_coalesce_timer: Coalescing timer FAILED — zero timer value causes infinite re-assertion loop
+#   305ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_COALESCE] SPI 33 re-triggering every cycle due to coalesce timer=0
+#   308ns UVM_ERROR tb_gic_dma.env.scoreboard [SB_WATCHDOG] Watchdog NMI not reaching CPU0: FIQ routing misconfigured in SCR_EL3
+#   310ns SVA_FAIL  tb_gic_dma.dut_wrap.u_gic.assert_fiq_route: FIQ routing FAILED — SCR_EL3.FIQ=0 prevents NMI delivery to CPU0
+#   312ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_WATCHDOG] Critical watchdog expiry unhandled — system reset required
+#   315ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_STORM_LOSS] 12 interrupts dropped during storm mitigation window on SPI 47
+#   318ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch0-ch3: concurrent 4-channel stress test
+#   320ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: 4KB complete
+#   322ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch1: 4KB complete
+#   325ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch2: 4KB complete
+#   328ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch3: 4KB complete
+#   330ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] 4-channel concurrent DMA — all PASS
+#   332ns UVM_INFO  tb_gic_dma.env.coverage [COV] 4-channel concurrent DMA coverage: hit
+#   335ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] SPI 50-60 rapid assertion (11 interrupts in 5ns)
+#   338ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 50-54: CPU0, SPI 55-57: CPU1, SPI 58-60: CPU2 — PASS
+#   340ns UVM_INFO  tb_gic_dma.env.coverage [COV] Multi-CPU interrupt distribution: 3/4 CPUs active
+#   342ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] SPI 128 (Group1-S, secure): asserting from secure world
+#   345ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] SPI 128 delivered to CPU0 secure handler — PASS
+#   348ns UVM_INFO  tb_gic_dma.env.coverage [COV] Secure interrupt coverage: Group1-S hit
+#   350ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch4-ch7: peripheral-mode concurrent test
+#   352ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch4: peripheral read 512B
+#   355ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch5: peripheral write 512B
+#   358ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch6: peripheral read 1KB
+#   360ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch7: peripheral write 1KB
+#   362ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] Peripheral DMA ch4-7 — all PASS
+#   365ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] SGI 0: CPU0->CPU1 (software generated interrupt)
+#   368ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_SGI] SGI 0 delivered CPU0->CPU1 — PASS
+#   370ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] SGI 15: CPU1->CPU0
+#   372ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_SGI] SGI 15 delivered CPU1->CPU0 — PASS
+#   375ns UVM_INFO  tb_gic_dma.env.coverage [COV] SGI delivery coverage: bidirectional hit
+#   378ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] PPI 25-30: private peripheral interrupts on CPU0
+#   380ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] PPI 25-30 delivered to CPU0 — all PASS
+#   382ns UVM_INFO  tb_gic_dma.env.coverage [COV] PPI coverage: 6/6 hit on CPU0
+#   385ns UVM_INFO  tb_gic_dma.env.dma_agent.driver [DRV] DMA ch0: abort mid-transfer test
+#   388ns UVM_INFO  tb_gic_dma.env.dma_agent.monitor [MON] DMA ch0: 2KB of 4KB transferred, abort asserted
+#   390ns UVM_WARNING tb_gic_dma.env.scoreboard [SB_DMA_ABORT] DMA ch0 aborted at 50% — checking partial transfer integrity
+#   392ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DMA] DMA ch0 abort: first 2KB data valid, remaining untouched — PASS
+#   395ns UVM_INFO  tb_gic_dma.env.coverage [COV] DMA abort coverage: mid-transfer abort hit
+#   398ns UVM_INFO  tb_gic_dma.env.gic_agent.driver [DRV] Deassert all SPIs, verify clean state
+#   400ns UVM_INFO  tb_gic_dma.env.scoreboard [SB_DELIVER] All SPIs deasserted, pending register clean — PASS
+#   402ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_CRITICAL] Interrupt subsystem stability compromised — escalating to platform management controller
+#   405ns UVM_FATAL tb_gic_dma.env.scoreboard [SB_CRITICAL] Multiple unrecoverable errors: storm, redistributor sync, watchdog — system reset required
+#   408ns UVM_INFO  tb_gic_dma.env.coverage [COV] Final coverage: 79.5% (target: 95%)
+#   410ns UVM_INFO  tb_gic_dma.env.coverage [COV] Holes: LPI MAPD sequences (5 bins), 4-CPU SGI broadcast (3 bins), Group0 FIQ routing (4 bins)
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] === Severity Summary ===
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] UVM_FATAL  : 5
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] UVM_ERROR  : 14
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] SVA_FAIL   : 10
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] UVM_WARNING: 11
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] UVM_INFO   : 135
+#   412ns UVM_INFO  tb_gic_dma.env [REPORT] === End gic_dma_stress_test ===
+#   415ns UVM_INFO  reporter [FINISH] Simulation complete at 415ns — FAILED (5 FATAL, 14 ERROR)

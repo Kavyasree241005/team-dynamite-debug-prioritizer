@@ -1,0 +1,136 @@
+// ============================================================================
+// UVM Simulation Log — AXI4 Interconnect & Bus Protocol Verification
+// Testbench: tb_axi4_interconnect | Seed: 0xCAFE_BABE | Run ID: 20241115_093000
+// Simulator: Synopsys VCS 2024.03 | UVM 1.2
+// ============================================================================
+#     0ns UVM_INFO  @ 0: reporter [RNTST] Running test axi4_interconnect_protocol_test...
+#     0ns UVM_INFO  @ 0: reporter [UVMTOP] UVM testbench topology build phase started
+#     5ns UVM_INFO  tb_axi4_interconnect.env [BUILD] AXI4 verification environment instantiated
+#     8ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0 [BUILD] Master agent M0 created: CPU cluster, ID_WIDTH=4, outstanding=16
+#    10ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1 [BUILD] Master agent M1 created: DMA engine, ID_WIDTH=8, outstanding=8
+#    12ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2 [BUILD] Master agent M2 created: GPU, ID_WIDTH=4, outstanding=32
+#    15ns UVM_INFO  tb_axi4_interconnect.env.slave_agent_0 [BUILD] Slave agent S0 created: SRAM 0x2000_0000-0x2007_FFFF
+#    18ns UVM_INFO  tb_axi4_interconnect.env.slave_agent_1 [BUILD] Slave agent S1 created: peripheral bridge 0x4000_0000-0x4FFF_FFFF
+#    20ns UVM_INFO  tb_axi4_interconnect.env.slave_agent_2 [BUILD] Slave agent S2 created: DDR controller 0x8000_0000-0xFFFF_FFFF
+#    22ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [BUILD] Protocol scoreboard created: ref_model=axi4_compliance_checker
+#    25ns UVM_INFO  tb_axi4_interconnect.env.coverage [BUILD] AXI4 protocol coverage collector instantiated
+#    28ns UVM_INFO  tb_axi4_interconnect.env [CONNECT] Master-slave TLM ports connected through interconnect model
+#    30ns UVM_INFO  tb_axi4_interconnect.env [CONFIG] Data width=128 bits, Address width=40 bits
+#    32ns UVM_INFO  tb_axi4_interconnect.env [CONFIG] QoS support enabled, 16 priority levels
+#    35ns UVM_INFO  tb_axi4_interconnect.env [CONFIG] Exclusive access monitor depth=32
+#    38ns UVM_INFO  tb_axi4_interconnect.env [CONFIG] Cross-clock domain bridges: M1->S1 (async), M2->S2 (async)
+#    40ns UVM_INFO  reporter [UVMTOP] Starting run phase
+#    42ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.sequencer [SEQ] Starting sequence: axi4_wr_rd_basic_seq (200 transactions)
+#    45ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.sequencer [SEQ] Starting sequence: axi4_dma_burst_seq (150 transactions)
+#    48ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.sequencer [SEQ] Starting sequence: axi4_gpu_streaming_seq (300 transactions)
+#    55ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: AWADDR=0x2000_0000 AWLEN=3 AWSIZE=4 AWBURST=INCR AWID=0x0
+#    58ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] W: burst 4 beats WSTRB=0xFFFF WLAST=1
+#    60ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Write burst M0->S0: 4 beats, BRESP=OKAY — PASS
+#    62ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AR: ARADDR=0x2000_0000 ARLEN=3 ARBURST=INCR ARID=0x1
+#    65ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_RD] Read burst M0->S0: 4 beats readback — data compare PASS
+#    68ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] INCR burst type coverage: hit (len=4)
+#    70ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] AW: AWADDR=0x8000_0000 AWLEN=15 AWID=0xAB
+#    72ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_ID] AXI ID width mismatch on M1: master issues 8-bit ID=0xAB, interconnect truncates to 4-bit ID=0x0B
+#    75ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_ID] Transaction ID truncation on M1: original_ID=0xAB truncated_ID=0x0B — potential response mismatch
+#    78ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Write burst M1->S2: 16 beats, BRESP=OKAY — PASS despite ID truncation
+#    80ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: AWADDR=0x4002_0000 AWLEN=0 AWSIZE=2 AWBURST=FIXED
+#    82ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_bresp_no_error: BRESP check FAILED — S1 returned SLVERR for write to ADDR=0x4002_0000
+#    85ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_RESP] BRESP=SLVERR on M0 write to S1 at ADDR=0x4002_0000 — peripheral register read-only
+#    88ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] SLVERR response coverage: hit
+#    90ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: AWADDR=0x2000_1000 AWLEN=7 AWBURST=WRAP AWID=0x3
+#    92ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Write WRAP burst M0->S0: 8 beats — PASS
+#    95ns UVM_WARNING tb_axi4_interconnect.env.master_agent_0.monitor [MON_STRB] Write strobe violation: WSTRB=0x0F narrow transfer AWSIZE=2 on 128-bit bus
+#    98ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] AW: GPU streaming 16-beat write to 0x8001_0000
+#   100ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Write burst M2->S2: 16 beats — PASS
+#   102ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_arready_handshake: AXI protocol violation — RVALID before ARREADY at ADDR=0x2000_2000
+#   105ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_PROTOCOL] AXI4 violation on S0: RVALID before ARREADY — spec requires handshake first
+#   108ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] AR: DMA reads 0x8000_0000 ARLEN=15 ARID=0xCD
+#   110ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] AR: DMA reads 0x8000_0400 ARLEN=15 ARID=0xDE
+#   112ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_rd_interleave_depth: Read interleaving depth exceeded on S2 — 4 outstanding, max=2
+#   115ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_INTERLEAVE] Read interleaving depth exceeded on S2: 4 > max 2 — response corruption risk
+#   118ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_INTERLEAVE] S2 may return interleaved RDATA across RIDs — DMA must handle
+#   120ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AR: ARADDR=0x6000_0000 — unmapped region
+#   122ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_rresp_no_decerr: RRESP DECERR at ADDR=0x6000_0000 — unmapped
+#   125ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_ADDR] RRESP=DECERR for M0 at 0x6000_0000 — no slave
+#   128ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_QOS] QoS starvation on M2: blocked 200 cycles while M0 served, threshold=100
+#   130ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] QoS starvation coverage: hit
+#   132ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AR: ARADDR=0x2000_3000 ARLOCK=1 (LDREX)
+#   135ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: AWADDR=0x2000_3000 AWLOCK=1 (STREX)
+#   138ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_EXCL] Exclusive pair: LDREX/STREX at 0x2000_3000 — EXOKAY — PASS
+#   140ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_EXCL] Exclusive monitor overflow: 33/32 entries — oldest evicted
+#   142ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_exokay_on_strex: Exclusive FAILED — EXOKAY not returned at 0x2000_1000 (evicted)
+#   145ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_EXCL] STREX at 0x2000_1000 got OKAY not EXOKAY — monitor overflow
+#   148ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW/W: writes #20-#40 to S0
+#   150ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Write batch #20..#40 — all PASS
+#   152ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] DMA scatter-gather txn #16-#30
+#   155ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] DMA #16..#30 — all PASS
+#   158ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] GPU tile writes #17-#50
+#   160ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] GPU #17..#50 — all PASS
+#   162ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_HAZARD] Write-read hazard: M0,M2 reading 0x8003_0000 while M1 writing
+#   165ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_HAZARD] M0 read at 0x8003_0000 returned stale data — ordering violation
+#   168ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] Barrier sequence issued; re-read PASS
+#   170ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW/W: writes #41-#60
+#   172ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Writes #41..#60 — all PASS
+#   175ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] DMA writes #31-#50 to DDR
+#   178ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] DMA #31..#50 — all PASS
+#   180ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] GPU reads #51-#80 from DDR
+#   182ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_RD] GPU #51..#80 — all PASS
+#   185ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: M0 + M1 + M2 contending for S0
+#   188ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_no_deadlock: Deadlock FAILED — no progress in 5000 cycles on S0
+#   190ns UVM_FATAL tb_axi4_interconnect.env.scoreboard [SB_DEADLOCK] Interconnect deadlock confirmed: 3-way contention M0/M1/M2 on S0
+#   192ns UVM_FATAL tb_axi4_interconnect.env.scoreboard [SB_DEADLOCK] Forced abort: killing 6 in-flight transactions
+#   195ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_LEAK] Transaction leak: M0 TxID=0x03 no B-response
+#   198ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_LEAK] Transaction leak: M1 TxID=0x0B no R-response
+#   200ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_LEAK] Transaction leak: M2 TxID=0x04 no B-response
+#   202ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] Post-deadlock recovery writes — PASS
+#   205ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW: AWADDR=0x1000_0000 (secure region, unprivileged)
+#   208ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_protection_unit: Protection violation — unprivileged access to 0x1000_0000
+#   210ns UVM_FATAL tb_axi4_interconnect.env.scoreboard [SB_SECURITY] Fabric protection violation: unprivileged to secure 0x1000_0000
+#   212ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW/W: normal writes #61-#80 post-security
+#   215ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] #61..#80 — all PASS
+#   218ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] Cache CleanInvalid 0x2000_0000..0x2000_0FFF
+#   220ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_COHERENCY] Snoop timeout: HN-F node 0 not responding within 500 cycles
+#   222ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_COHERENCY] Snoop filter eviction storm: 128 evictions/1000 cycles
+#   225ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_coherency_state: Coherency violation — L1=Modified, L2=Invalid at 0x2000_3040
+#   228ns UVM_FATAL tb_axi4_interconnect.env.scoreboard [SB_COHERENCY] DATA CORRUPTION: Modified/Invalid conflict at 0x2000_3040
+#   230ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] DMA #51-#70 to DDR
+#   232ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] DMA #51..#70 — all PASS
+#   235ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] GPU writes #81-#120
+#   238ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] GPU #81..#120 — all PASS
+#   240ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AR: reads #26-#40 from S1
+#   242ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_RD] Reads #26..#40 — all PASS
+#   245ns UVM_WARNING tb_axi4_interconnect.env.master_agent_1.monitor [MON_CDC] Power domain crossing violation: PD0->PD1 no handshake
+#   248ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_CDC] CDC FIFO overflow: async bridge S1, depth=16, pending=18
+#   250ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_CDC] CDC data corruption probable: 2 txns metastability risk
+#   252ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW/W: writes #81-#100 mixed bursts (len 1,2,4,8,16)
+#   255ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Mixed burst writes #81..#100 — all PASS
+#   258ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] Burst length coverage: all lengths hit
+#   260ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AR: narrow transfers (ARSIZE=0,1,2,3) #41-#60
+#   262ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_RD] Narrow reads #41..#60 — all PASS
+#   265ns UVM_WARNING tb_axi4_interconnect.env.scoreboard [SB_ALIGN] Unaligned transfer AWADDR=0x2000_5003, AWSIZE=4
+#   268ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Unaligned writes handled — all PASS
+#   270ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] DMA writes #71-#90 back-pressure test
+#   272ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] DMA back-pressure #71..#90 — all PASS
+#   275ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] GPU writes #121-#200
+#   278ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] GPU #121..#200 — all PASS
+#   280ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] AW/W: QoS mixed writes #101-#140
+#   282ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] QoS mixed #101..#140 — all PASS
+#   285ns UVM_INFO  tb_axi4_interconnect.env.master_agent_1.driver [DRV] DMA final #91-#150
+#   288ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] DMA final #91..#150 — all PASS
+#   290ns UVM_INFO  tb_axi4_interconnect.env.master_agent_2.driver [DRV] GPU final #201-#300
+#   292ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] GPU final #201..#300 — all PASS
+#   295ns UVM_INFO  tb_axi4_interconnect.env.master_agent_0.driver [DRV] Final writes #141-#200
+#   298ns UVM_INFO  tb_axi4_interconnect.env.scoreboard [SB_WR] Final #141..#200 — all PASS
+#   300ns SVA_FAIL  tb_axi4_interconnect.dut_wrap.u_ic.assert_outstanding_zero: 2 transactions still pending at test end
+#   302ns UVM_ERROR tb_axi4_interconnect.env.scoreboard [SB_LEAK] End-of-test outstanding check failed: M0=1, M1=1 pending
+#   305ns UVM_FATAL tb_axi4_interconnect.env.scoreboard [SB_FABRIC] Fabric non-recoverable after coherency corruption — global reset
+#   308ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] Final coverage: 82.1% (target: 95%)
+#   310ns UVM_INFO  tb_axi4_interconnect.env.coverage [COV] Holes: QoS levels 13-16, CDC timing, 4-way deadlock
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] === Severity Summary ===
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] UVM_FATAL  : 5
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] UVM_ERROR  : 16
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] SVA_FAIL   : 9
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] UVM_WARNING: 8
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] UVM_INFO   : 130
+#   312ns UVM_INFO  tb_axi4_interconnect.env [REPORT] === End axi4_interconnect_protocol_test ===
+#   315ns UVM_INFO  reporter [FINISH] Simulation complete at 315ns — FAILED (5 FATAL, 16 ERROR)

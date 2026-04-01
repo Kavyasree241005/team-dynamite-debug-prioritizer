@@ -1,0 +1,17 @@
+{
+  "<SIM_TIME> UVM_INFO  tb_axi4_interconnect.env [REPORT] UVM_FATAL  : 5": {
+    "status": "fixed",
+    "fixed_on": "2026-03-27T09:18:56.268751",
+    "fixed_run_id": "ui_run"
+  },
+  "<SIM_TIME> UVM_INFO  tb_ddr5_mem_ctrl.env [REPORT] UVM_FATAL  : 3": {
+    "status": "fixed",
+    "fixed_on": "2026-03-28T05:49:57.470471",
+    "fixed_run_id": "ui_run"
+  },
+  "<SIM_TIME> UVM_FATAL tb_ddr5_mem_ctrl.env.scoreboard [SB_ECC] UNCORRECTABLE mult": {
+    "status": "fixed",
+    "fixed_on": "2026-03-28T06:04:26.156891",
+    "fixed_run_id": "ui_run"
+  }
+}
