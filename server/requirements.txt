@@ -3,7 +3,7 @@
 # Requirements (CPU-friendly, pinned versions)
 # ──────────────────────────────────────────────────────────
 
-# Core ML / Embeddings
+
 
 sentence-transformers==2.6.1
 
