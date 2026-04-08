@@ -1,4 +1,6 @@
-const API_BASE = "https://team-dynamite-debug-prioritizer.onrender.com/api";
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://team-dynamite-api.onrender.com/api";
 
 export async function runDemo() {
   const res = await fetch(`${API_BASE}/run-demo`, { method: "POST" });

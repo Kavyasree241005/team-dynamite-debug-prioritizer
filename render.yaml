@@ -1,0 +1,36 @@
+# render.yaml — Infrastructure-as-Code for Team Dynamite Debug Prioritizer
+# Deploy both backend (Node + Python) and frontend (React/Vite static site)
+
+services:
+  # ── Backend: Node.js + Python ML pipeline ──────────────────────────
+  - type: web
+    name: team-dynamite-api
+    runtime: python
+    buildCommand: |
+      pip install -r server/requirements.txt &&
+      cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: "20.11.0"
+      - key: PYTHON_VERSION
+        value: "3.10.13"
+      - key: PORT
+        value: "3001"
+    plan: free
+    healthCheckPath: /api/health
+
+  # ── Frontend: Vite React Static Site ───────────────────────────────
+  - type: web
+    name: team-dynamite-ui
+    runtime: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://team-dynamite-api.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    plan: free
