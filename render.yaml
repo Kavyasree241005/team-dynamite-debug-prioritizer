@@ -21,8 +21,9 @@ services:
     healthCheckPath: /api/health
 
   # ── Frontend: Vite React Static Site ───────────────────────────────
-  - type: static
+  - type: web
     name: team-dynamite-ui
+    runtime: static
     buildCommand: cd client && npm install && npm run build
     staticPublishPath: client/dist
     envVars:
